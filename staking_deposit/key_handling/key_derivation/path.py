@@ -31,6 +31,9 @@ def mnemonic_and_path_to_key(*, mnemonic: str, path: str, password: str) -> int:
     """
     seed = get_seed(mnemonic=mnemonic, password=password)
     sk = derive_master_SK(seed)
+    print('seed: ', seed.hex())
+    print('mnemonic: ', mnemonic)
+    print('password: ', password)
     for node in path_to_nodes(path):
         sk = derive_child_SK(parent_SK=sk, index=node)
     return sk

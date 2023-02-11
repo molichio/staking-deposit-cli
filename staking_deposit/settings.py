@@ -10,6 +10,7 @@ class BaseChainSetting(NamedTuple):
 
 
 MAINNET = 'mainnet'
+LOCAL = 'local'
 ROPSTEN = 'ropsten'
 GOERLI = 'goerli'
 PRATER = 'prater'
@@ -19,6 +20,8 @@ ZHEJIANG = 'zhejiang'
 
 # Mainnet setting
 MainnetSetting = BaseChainSetting(NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=bytes.fromhex('00000000'))
+# Local setting
+LocalSetting = BaseChainSetting(NETWORK_NAME=LOCAL, GENESIS_FORK_VERSION=bytes.fromhex('00000001'))
 # Ropsten setting
 RopstenSetting = BaseChainSetting(NETWORK_NAME=ROPSTEN, GENESIS_FORK_VERSION=bytes.fromhex('80000069'))
 # Goerli setting
@@ -31,6 +34,7 @@ ZhejiangSetting = BaseChainSetting(NETWORK_NAME=ZHEJIANG, GENESIS_FORK_VERSION=b
 
 ALL_CHAINS: Dict[str, BaseChainSetting] = {
     MAINNET: MainnetSetting,
+    LOCAL: LocalSetting,
     ROPSTEN: RopstenSetting,
     GOERLI: GoerliSetting,
     PRATER: GoerliSetting,  # Prater is the old name of the Prater/Goerli testnet

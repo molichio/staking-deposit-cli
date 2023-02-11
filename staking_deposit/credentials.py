@@ -51,8 +51,8 @@ class Credential:
         purpose = '12381'
         coin_type = '3600'
         account = str(index)
-        withdrawal_key_path = f'm/{purpose}/{coin_type}/{account}/0'
-        self.signing_key_path = f'{withdrawal_key_path}/0'
+        withdrawal_key_path = f'm/{purpose}/{coin_type}/0/0'
+        self.signing_key_path = f'm/{purpose}/{coin_type}/{account}/0/0'
 
         self.withdrawal_sk = mnemonic_and_path_to_key(
             mnemonic=mnemonic, path=withdrawal_key_path, password=mnemonic_password)
@@ -104,8 +104,11 @@ class Credential:
             withdrawal_credentials = ETH1_ADDRESS_WITHDRAWAL_PREFIX
             withdrawal_credentials += b'\x00' * 11
             withdrawal_credentials += self.eth1_withdrawal_address
+
         else:
             raise ValueError(f"Invalid withdrawal_type {self.withdrawal_type}")
+        print('w pubkey: ', self.withdrawal_pk.hex())
+        print('w cred: ', withdrawal_credentials.hex())
         return withdrawal_credentials
 
     @property
